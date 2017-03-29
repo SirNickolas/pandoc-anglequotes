@@ -20,4 +20,5 @@ make install # Installs locally.
 
 ```sh
 pip install -Ur requirements.txt
+make install-python # Installs locally.
 ```

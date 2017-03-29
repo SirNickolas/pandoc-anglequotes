@@ -1,4 +1,4 @@
-.PHONY: all install uninstall clean
+.PHONY: all install install-python uninstall clean
 
 GHC      ?= ghc
 GHCFLAGS ?= -O2 -dynamic
@@ -9,15 +9,18 @@ DEST ?= $$HOME/.pandoc/filters
 
 all: $(OBJ)
 
-$(OBJ): %: %.hs
+$(OBJ): $(OBJ).hs
 	$(GHC) $(GHCFLAGS) $@
 	$(STRIP) $@
 
 install: all
-	install -pDt $(DESTDIR)$(DEST) $(OBJ)
+	install -pD $(OBJ) -t $(DESTDIR)$(DEST)
+
+install-python:
+	install -pD $(OBJ).py $(DESTDIR)$(DEST)/$(OBJ)
 
 uninstall:
-	$(RM) $(OBJ:%=$(DESTDIR)$(DEST)/%)
+	$(RM) $(DESTDIR)$(DEST)/$(OBJ)
 
 clean:
 	$(RM) $(OBJ) *.o *.hi
