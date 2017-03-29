@@ -11,7 +11,8 @@ in both Haskell (faster) and Python 2/3 (easier to install).
 # Ensure ~/.cabal/bin is in your $PATH.
 cabal update
 cabal install happy pandoc
-make # Or invoke ghc directly.
+make
+make install # Installs locally.
 ```
 
 
